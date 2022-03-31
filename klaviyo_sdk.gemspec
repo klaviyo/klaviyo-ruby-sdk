@@ -17,7 +17,7 @@ require "klaviyo_sdk/version"
 
 Gem::Specification.new do |s|
   s.name        = "klaviyo_sdk"
-  s.version     = "1.0.0.20220329"
+  s.version     = "1.0.1.20220329"
   s.authors     = ['Klaviyo Team']
   s.email       = ['libraries@klaviyo.com']
   s.summary     = 'You heard us, a Ruby wrapper for the Klaviyo API'
@@ -32,4 +32,9 @@ Gem::Specification.new do |s|
   s.files         = `find *`.split("\n").uniq.sort.select { |f| !f.empty? }
   s.executables   = []
   s.require_paths = ["lib"]
+
+  s.metadata = {
+    "changelog_uri"     => "https://github.com/klaviyo/klaviyo-ruby-sdk/blob/main/CHANGELOG.md",
+    "documentation_uri" => "https://github.com/klaviyo/klaviyo-ruby-sdk/blob/main/README.md",
+  }
 end
