@@ -10,7 +10,7 @@ OpenAPI Generator version: 5.4.0
 
 =end
 
-module Client
+module Klaviyo
   class Configuration
     # Defines url scheme
     attr_accessor :scheme

@@ -57,12 +57,12 @@ require 'klaviyo_sdk/api/track_identify_api'
 # retry logic
 require 'retriable'
 
-module Client
+module Klaviyo
   @is_initialized = false
 
   class << self
     # Customize default settings for the SDK using block.
-    #   Client.configure do |config|
+    #   Klaviyo.configure do |config|
     #     config.username = "xxx"
     #     config.password = "xxx"
     #   end
@@ -85,8 +85,8 @@ module Client
         self.constants.each do |c|
           if c[-3..-1] == "Api"
             attributes = [:attr1]
-            wrapper_class = Client.const_set(c[0..-4], Struct.new(*attributes))
-            original_class = Client.const_get(c)
+            wrapper_class = Klaviyo.const_set(c[0..-4], Struct.new(*attributes))
+            original_class = Klaviyo.const_get(c)
             
             # recreate methods
             original_class.public_instance_methods(false).each do |m|
@@ -103,14 +103,14 @@ module Client
                       c.tries = max_retries
                       c.max_elapsed_time = max_delay
                       c.on = {
-                        Client::ApiError => [/400/, /503/, /504/]
+                        Klaviyo::ApiError => [/400/, /503/, /504/]
                       }
                     end
                     Retriable.retriable do
-                      Client.const_get(c).new.send(m, *arg)
+                      Klaviyo.const_get(c).new.send(m, *arg)
                     end
                   else
-                    Client.const_get(c).new.send(m, *arg)
+                    Klaviyo.const_get(c).new.send(m, *arg)
                   end
                 end
               }

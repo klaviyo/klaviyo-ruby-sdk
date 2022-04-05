@@ -12,7 +12,7 @@ OpenAPI Generator version: 5.4.0
 
 require 'cgi'
 
-module Client
+module Klaviyo
   class DataPrivacyApi
     attr_accessor :api_client
 

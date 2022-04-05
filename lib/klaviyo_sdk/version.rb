@@ -10,6 +10,6 @@ OpenAPI Generator version: 5.4.0
 
 =end
 
-module Client
+module Klaviyo
   VERSION = '1.0.0'
 end

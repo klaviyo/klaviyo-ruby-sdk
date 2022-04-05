@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 1.0.1.20220329
+- SDK version: 1.0.3.20220329
 
 ## Helpful Resources
 
@@ -60,13 +60,13 @@ gem build klaviyo_sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo_sdk-1.0.1.20220329.gem
+gem install ./klaviyo_sdk-1.0.3.20220329.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo_sdk', '~> 1.0.1.20220329'
+    gem 'klaviyo_sdk', '~> 1.0.3.20220329'
 
 To install directly from rubygems:
 
@@ -83,7 +83,7 @@ gem install klaviyo_sdk
 require 'klaviyo_sdk'
 
 # Setup authorization
-Client.configure do |config|
+Klaviyo.configure do |config|
   config.api_key['ApiKeyAuth'] = 'YOUR API KEY'
   #config.max_retries = 5 # optional
   #config.max_delay = 60 # optional
@@ -102,7 +102,7 @@ metric_id = 'METRIC_ID'
 count = 100
 
 begin
-  result = Client::Metrics.metric_export(metric_id, count=count) 
+  result = Klaviyo::Metrics.metric_export(metric_id, count=count) 
 end
 ```
 
@@ -114,8 +114,8 @@ metric_id = 'METRIC_ID'
 count = 100
 
 begin
-  result = Client::Metrics.metric_export(metric_id, count=count) 
-rescue Client::ApiError => e
+  result = Klaviyo::Metrics.metric_export(metric_id, count=count) 
+rescue Klaviyo::ApiError => e
   puts "Error when calling Metrics.metric_export #{e}"
 end
 ```
@@ -136,14 +136,14 @@ _**NOTE:**_
 #### [Cancel a Campaign](https://developers.klaviyo.com/en/reference/cancel-campaign)
 
 ```ruby
-Client::Campaigns.cancel_campaign(campaign_id)
+Klaviyo::Campaigns.cancel_campaign(campaign_id)
 ```
 
 #### Example:
 
 ```ruby
 campaign_id = 'CAMPAIGN_ID'
-response = Client::Campaigns.cancel_campaign(campaign_id)
+response = Klaviyo::Campaigns.cancel_campaign(campaign_id)
 ```
 
 
@@ -153,7 +153,7 @@ response = Client::Campaigns.cancel_campaign(campaign_id)
 #### [Clone a Campaign](https://developers.klaviyo.com/en/reference/clone-campaign)
 
 ```ruby
-Client::Campaigns.clone_campaign(campaign_id, name, list_id)
+Klaviyo::Campaigns.clone_campaign(campaign_id, name, list_id)
 ```
 
 #### Example:
@@ -162,7 +162,7 @@ campaign_id = 'CAMPAIGN_ID'
 name        = 'CLONED_CAMPAIGN'
 list_id     = 'LIST_ID'
 
-response = Client::Campaigns.clone_campaign(campaign_id, name, list_id)
+response = Klaviyo::Campaigns.clone_campaign(campaign_id, name, list_id)
 ```
 
 
@@ -172,7 +172,7 @@ response = Client::Campaigns.clone_campaign(campaign_id, name, list_id)
 #### [Create New Campaign](https://developers.klaviyo.com/en/reference/create-campaign)
 
 ```ruby
-Client::Campaigns.create_campaign(list_id, template_id, from_email, from_name, subject, opts)
+Klaviyo::Campaigns.create_campaign(list_id, template_id, from_email, from_name, subject, opts)
 ```
 
 #### Example:
@@ -189,7 +189,7 @@ opts = {
   'name': 'Campaign Name',
 }
 
-response = Client::Campaigns.create_campaign(list_id, template_id, from_email, from_name, subject, opts)
+response = Klaviyo::Campaigns.create_campaign(list_id, template_id, from_email, from_name, subject, opts)
 ```
 
 
@@ -198,14 +198,14 @@ response = Client::Campaigns.create_campaign(list_id, template_id, from_email, f
 #### [Get Campaign Info](https://developers.klaviyo.com/en/reference/get-campaign-info)
 
 ```ruby
-Client::Campaigns.get_campaign_info(campaign_id)
+Klaviyo::Campaigns.get_campaign_info(campaign_id)
 ```
 
 #### Example:
 ```ruby
 campaign_id = 'CAMPAIGN_ID'
 
-response = Client::Campaigns.get_campaign_info(campaign_id)
+response = Klaviyo::Campaigns.get_campaign_info(campaign_id)
 ```
 
 
@@ -214,7 +214,7 @@ response = Client::Campaigns.get_campaign_info(campaign_id)
 #### [Get Campaign Recipients](https://developers.klaviyo.com/en/reference/get-campaign-recipients)
 
 ```ruby
-Client::Campaigns.get_campaign_recipients(campaign_id, opts)
+Klaviyo::Campaigns.get_campaign_recipients(campaign_id, opts)
 ```
 
 ####  Example:
@@ -228,7 +228,7 @@ opts = {
   # offset: 'offset'
 }
 
-response = Client::Campaigns.get_campaign_recipients(campaign_id, opts)
+response = Klaviyo::Campaigns.get_campaign_recipients(campaign_id, opts)
 ```
 
 
@@ -237,7 +237,7 @@ response = Client::Campaigns.get_campaign_recipients(campaign_id, opts)
 #### [Get Campaigns](https://developers.klaviyo.com/en/reference/get-campaigns)
 
 ```ruby
-Client::Campaigns.get_campaigns(opts)
+Klaviyo::Campaigns.get_campaigns(opts)
 ```
 
 #### Example:
@@ -247,7 +247,7 @@ opts = {
   'count': 1
 }
 
-response = Client::Campaigns.get_campaigns(opts)
+response = Klaviyo::Campaigns.get_campaigns(opts)
 ```
 
 
@@ -256,7 +256,7 @@ response = Client::Campaigns.get_campaigns(opts)
 #### [Schedule a Campaign](https://developers.klaviyo.com/en/reference/schedule-campaign)
 
 ```ruby
-Client::Campaigns.schedule_campaign(campaign_id, send_time)
+Klaviyo::Campaigns.schedule_campaign(campaign_id, send_time)
 ```
 
 #### Example:
@@ -264,7 +264,7 @@ Client::Campaigns.schedule_campaign(campaign_id, send_time)
 campaign_id = 'CAMPAIGN_ID'
 send_time = '2030-01-13 00:00:00'
 
-response = Client::Campaigns.schedule_campaign(campaign_id, send_time)
+response = Klaviyo::Campaigns.schedule_campaign(campaign_id, send_time)
 ```
 
 
@@ -273,14 +273,14 @@ response = Client::Campaigns.schedule_campaign(campaign_id, send_time)
 #### [Send a Campaign Immediately](https://developers.klaviyo.com/en/reference/send-campaign)
 
 ```ruby
-Client::Campaigns.send_campaign(campaign_id)
+Klaviyo::Campaigns.send_campaign(campaign_id)
 ```
 
 #### Example:
 ```ruby
 campaign_id = 'CAMPAIGN_ID'
 
-response = Client::Campaigns.send_campaign(campaign_id)
+response = Klaviyo::Campaigns.send_campaign(campaign_id)
 
 ```
 
@@ -290,7 +290,7 @@ response = Client::Campaigns.send_campaign(campaign_id)
 #### [Update Campaign](https://developers.klaviyo.com/en/reference/update-campaign)
 
 ```ruby
-Client::Campaigns.update_campaign(campaign_id, opts)
+Klaviyo::Campaigns.update_campaign(campaign_id, opts)
 ```
 
 #### Example:
@@ -308,7 +308,7 @@ opts = {
   'add_google_analytics': false
 }
 
-response = Client::Campaigns.update_campaign(campaign_id, opts)
+response = Klaviyo::Campaigns.update_campaign(campaign_id, opts)
 
 ```
 
@@ -322,7 +322,7 @@ response = Client::Campaigns.update_campaign(campaign_id, opts)
 #### [Request a Deletion](https://developers.klaviyo.com/en/reference/request-deletion)
 
 ```ruby
-Client::DataPrivacy.request_deletion(opts)
+Klaviyo::DataPrivacy.request_deletion(opts)
 ```
 
 #### Example:
@@ -333,7 +333,7 @@ opts = {
   }
 }
 
-response = Client::DataPrivacy.request_deletion(opts)
+response = Klaviyo::DataPrivacy.request_deletion(opts)
 ```
 
 
@@ -346,7 +346,7 @@ response = Client::DataPrivacy.request_deletion(opts)
 #### [Add Members to a List](https://developers.klaviyo.com/en/reference/add-members)
 
 ```ruby
-Client::ListsSegments.add_members(list_id, opts)
+Klaviyo::ListsSegments.add_members(list_id, opts)
 ```
 
 #### Example:
@@ -362,7 +362,7 @@ opts = {
   }
 }
 
-response = Client::ListsSegments.add_members(list_id, opts)
+response = Klaviyo::ListsSegments.add_members(list_id, opts)
 ```
 
 
@@ -371,14 +371,14 @@ response = Client::ListsSegments.add_members(list_id, opts)
 #### [Create List](https://developers.klaviyo.com/en/reference/create-list)
 
 ```ruby
-Client::ListsSegments.create_list(list_name)
+Klaviyo::ListsSegments.create_list(list_name)
 ```
 
 #### Example:
 ```ruby
 list_name = 'MyNewList'
 
-response = Client::ListsSegments.create_list(list_name)
+response = Klaviyo::ListsSegments.create_list(list_name)
 ```
 
 
@@ -387,14 +387,14 @@ response = Client::ListsSegments.create_list(list_name)
 #### [Delete List](https://developers.klaviyo.com/en/reference/delete-list)
 
 ```ruby
-Client::ListsSegments.delete_list(list_id)
+Klaviyo::ListsSegments.delete_list(list_id)
 ```
 
 #### Example:
 ```ruby
 list_id = 'LIST_ID'
 
-response = Client::ListsSegments.delete_list(list_id)
+response = Klaviyo::ListsSegments.delete_list(list_id)
 ```
 
 
@@ -403,14 +403,14 @@ response = Client::ListsSegments.delete_list(list_id)
 #### [Exclude Profile From All Email](https://developers.klaviyo.com/en/reference/exclude-globally)
 
 ```ruby
-Client::ListsSegments.exclude_globally(email)
+Klaviyo::ListsSegments.exclude_globally(email)
 ```
 
 #### Example:
 ```ruby
 email = 'george.washington@klaviyo.com'
 
-response = Client::ListsSegments.exclude_globally(email)
+response = Klaviyo::ListsSegments.exclude_globally(email)
 ```
 
 
@@ -419,7 +419,7 @@ response = Client::ListsSegments.exclude_globally(email)
 #### [Get Global Exclusions & Unsubscribes](https://developers.klaviyo.com/en/reference/get-global-exclusions)
 
 ```ruby
-Client::ListsSegments.get_global_exclusions(opts)
+Klaviyo::ListsSegments.get_global_exclusions(opts)
 ```
 
 #### Example:
@@ -433,7 +433,7 @@ opts = {
   }
 }
 
-response = Client::ListsSegments.get_global_exclusions(opts)
+response = Klaviyo::ListsSegments.get_global_exclusions(opts)
 ```
 
 
@@ -442,7 +442,7 @@ response = Client::ListsSegments.get_global_exclusions(opts)
 #### [Get All Exclusions for a List](https://developers.klaviyo.com/en/reference/get-list-exclusions)
 
 ```ruby
-Client::ListsSegments.get_list_exclusions(list_id, opts)
+Klaviyo::ListsSegments.get_list_exclusions(list_id, opts)
 ```
 
 #### Example:
@@ -455,7 +455,7 @@ opts = {
   }
 }
 
-response = Client::ListsSegments.get_list_exclusions(list_id, opts)
+response = Klaviyo::ListsSegments.get_list_exclusions(list_id, opts)
 ```
 
 
@@ -464,14 +464,14 @@ response = Client::ListsSegments.get_list_exclusions(list_id, opts)
 #### [Get List Info](https://developers.klaviyo.com/en/reference/get-list-info)
 
 ```ruby
-Client::ListsSegments.get_list_info(list_id)
+Klaviyo::ListsSegments.get_list_info(list_id)
 ```
 
 #### Example:
 ```ruby
 list_id = 'LIST_ID'
 
-response = Client::ListsSegments.get_list_info(list_id)
+response = Klaviyo::ListsSegments.get_list_info(list_id)
 ```
 
 
@@ -480,7 +480,7 @@ response = Client::ListsSegments.get_list_info(list_id)
 #### [Check if Profiles Are in a List](https://developers.klaviyo.com/en/reference/get-list-members)
 
 ```ruby
-Client::ListsSegments.get_list_members(list_id, opts)
+Klaviyo::ListsSegments.get_list_members(list_id, opts)
 ```
 
 #### Example:
@@ -495,7 +495,7 @@ opts = {
   }
 }
 
-response = Client::ListsSegments.get_list_members(list_id, opts)
+response = Klaviyo::ListsSegments.get_list_members(list_id, opts)
 ```
 
 
@@ -504,7 +504,7 @@ response = Client::ListsSegments.get_list_members(list_id, opts)
 #### [Check if Profiles Are in a List and not Suppressed](https://developers.klaviyo.com/en/reference/get-list-subscriptions)
 
 ```ruby
-Client::ListsSegments.get_list_subscriptions(list_id, opts)
+Klaviyo::ListsSegments.get_list_subscriptions(list_id, opts)
 ```
 
 #### Example:
@@ -515,7 +515,7 @@ opts = {
   body: {'emails': ['george.washington@klaviyo.com']}
 }
 
-response = Client::ListsSegments.get_list_subscriptions(list_id, opts)
+response = Klaviyo::ListsSegments.get_list_subscriptions(list_id, opts)
 ```
 
 
@@ -524,12 +524,12 @@ response = Client::ListsSegments.get_list_subscriptions(list_id, opts)
 #### [Get Lists](https://developers.klaviyo.com/en/reference/get-lists)
 
 ```ruby
-Client::ListsSegments.get_lists
+Klaviyo::ListsSegments.get_lists
 ```
 
 #### Example:
 ```ruby
-response = Client::ListsSegments.get_lists
+response = Klaviyo::ListsSegments.get_lists
 ```
 
 
@@ -538,7 +538,7 @@ response = Client::ListsSegments.get_lists
 #### [Get List and Segment Members](https://developers.klaviyo.com/en/reference/get-members)
 
 ```ruby
-Client::ListsSegments.get_members(list_or_segment_id, opts)
+Klaviyo::ListsSegments.get_members(list_or_segment_id, opts)
 ```
 
 #### Example:
@@ -550,7 +550,7 @@ opts = {
       # marker: 12345
   }
 }
-response = Client::ListsSegments.get_members(list_id)
+response = Klaviyo::ListsSegments.get_members(list_id)
 ```
 
 
@@ -559,7 +559,7 @@ response = Client::ListsSegments.get_members(list_id)
 #### [Check if Profiles Are in a Segment](https://developers.klaviyo.com/en/reference/get-segment-members)
 
 ```ruby
-Client::ListsSegments.get_segment_members(segment_id, opts)
+Klaviyo::ListsSegments.get_segment_members(segment_id, opts)
 ```
 
 #### Example:
@@ -569,7 +569,7 @@ segment_id = 'SEGMENT_ID'
 opts = {
   body: {'emails': ['george.washington@klaviyo.com']}
 }
-response = Client::ListsSegments.get_segment_members(segment_id, opts)
+response = Klaviyo::ListsSegments.get_segment_members(segment_id, opts)
 ```
 
 
@@ -578,7 +578,7 @@ response = Client::ListsSegments.get_segment_members(segment_id, opts)
 #### [Remove Profiles From List](https://developers.klaviyo.com/en/reference/remove-members)
 
 ```ruby
-Client::ListsSegments.remove_members(list_id, opts)
+Klaviyo::ListsSegments.remove_members(list_id, opts)
 ```
 
 #### Example:
@@ -589,7 +589,7 @@ opts = {
   body: {'emails': ['george.washington@klaviyo.com']}
 }
 
-response = Client::ListsSegments.remove_members(list_id, opts)
+response = Klaviyo::ListsSegments.remove_members(list_id, opts)
 ```
 
 
@@ -598,7 +598,7 @@ response = Client::ListsSegments.remove_members(list_id, opts)
 #### [Subscribe Profiles to List](https://developers.klaviyo.com/en/reference/subscribe)
 
 ```ruby
-Client::ListsSegments.subscribe(list_id, opts)
+Klaviyo::ListsSegments.subscribe(list_id, opts)
 ```
 
 #### Example:
@@ -615,7 +615,7 @@ opts = {
   }
 }
 
-response = Client::ListsSegmentsApi.new.subscribe(list_id, opts)
+response = Klaviyo::ListsSegmentsApi.new.subscribe(list_id, opts)
 ```
 
 
@@ -624,7 +624,7 @@ response = Client::ListsSegmentsApi.new.subscribe(list_id, opts)
 #### [Unsubscribe Profiles From List](https://developers.klaviyo.com/en/reference/unsubscribe)
 
 ```ruby
-Client::ListsSegments.unsubscribe(list_id, opts)
+Klaviyo::ListsSegments.unsubscribe(list_id, opts)
 ```
 
 #### Example:
@@ -638,7 +638,7 @@ opts = {
     ]
   }
 }
-response = Client::ListsSegments.unsubscribe(list_id, opts)
+response = Klaviyo::ListsSegments.unsubscribe(list_id, opts)
 ```
 
 
@@ -647,7 +647,7 @@ response = Client::ListsSegments.unsubscribe(list_id, opts)
 #### [Update List Name](https://developers.klaviyo.com/en/reference/update-list-name)
 
 ```ruby
-Client::ListsSegments.update_list_name(list_id, list_name)
+Klaviyo::ListsSegments.update_list_name(list_id, list_name)
 ```
 
 #### Example:
@@ -655,7 +655,7 @@ Client::ListsSegments.update_list_name(list_id, list_name)
 list_id   = 'LIST_ID'
 list_name = 'MyRenamedList'
 
-response = Client::ListsSegments.update_list_name(list_id, list_name)
+response = Klaviyo::ListsSegments.update_list_name(list_id, list_name)
 ```
 
 
@@ -668,7 +668,7 @@ response = Client::ListsSegments.update_list_name(list_id, list_name)
 #### [Get Metrics Info](https://developers.klaviyo.com/en/reference/get-metrics)
 
 ```ruby
-Client::Metrics.get_metrics(opts)
+Klaviyo::Metrics.get_metrics(opts)
 ```
 
 #### Example:
@@ -680,7 +680,7 @@ opts = {
   }
 }
 
-response = Client::Metrics.get_metrics(opts)
+response = Klaviyo::Metrics.get_metrics(opts)
 ```
 
 
@@ -689,7 +689,7 @@ response = Client::Metrics.get_metrics(opts)
 #### [Query Event Data](https://developers.klaviyo.com/en/reference/metric-export)
 
 ```ruby
-Client::Metrics.metric_export(metric_id, opts)
+Klaviyo::Metrics.metric_export(metric_id, opts)
 ```
 
 #### Example:
@@ -703,7 +703,7 @@ opts = {
   }
 }
 
-response = Client::Metrics.metric_export(metric_id, opts)
+response = Klaviyo::Metrics.metric_export(metric_id, opts)
 ```
 
 
@@ -712,7 +712,7 @@ response = Client::Metrics.metric_export(metric_id, opts)
 #### [Get Events for a Specific Metric](https://developers.klaviyo.com/en/reference/metric-timeline)
 
 ```ruby
-Client::Metrics.metric_timeline(metric_id, opts)
+Klaviyo::Metrics.metric_timeline(metric_id, opts)
 ```
 
 #### Example:
@@ -727,7 +727,7 @@ opts = {
   }
 }
 
-response = Client::Metrics.metric_timeline(metric_id, opts)
+response = Klaviyo::Metrics.metric_timeline(metric_id, opts)
 ```
 
 
@@ -736,7 +736,7 @@ response = Client::Metrics.metric_timeline(metric_id, opts)
 #### [Get Events for All Metrics](https://developers.klaviyo.com/en/reference/metrics-timeline)
 
 ```ruby
-Client::Metrics.metrics_timeline(opts)
+Klaviyo::Metrics.metrics_timeline(opts)
 ```
 
 #### Example:
@@ -748,7 +748,7 @@ opts = {
     sort: 'asc'
   }
 }
-response = Client::Metrics.metrics_timeline(opts)
+response = Klaviyo::Metrics.metrics_timeline(opts)
 ```
 
 
@@ -761,7 +761,7 @@ response = Client::Metrics.metrics_timeline(opts)
 #### [Exchange ID for Profile ID](https://developers.klaviyo.com/en/reference/exchange)
 
 ```ruby
-Client::Profiles.exchange(opts)
+Klaviyo::Profiles.exchange(opts)
 ```
 
 #### Example:
@@ -770,7 +770,7 @@ opts = {
   body: {'exchange_id': 'EXCHANGE_ID'}
 }
 
-response = Client::Profiles.exchange(opts)
+response = Klaviyo::Profiles.exchange(opts)
 ```
 
 
@@ -779,14 +779,14 @@ response = Client::Profiles.exchange(opts)
 #### [Get Profile](https://developers.klaviyo.com/en/reference/get-profile)
 
 ```ruby
-Client::Profiles.get_profile(person_id)
+Klaviyo::Profiles.get_profile(person_id)
 ```
 
 #### Example:
 ```ruby
 person_id = 'PERSON_ID'
 
-response = Client::Profiles.get_profile(person_id)
+response = Klaviyo::Profiles.get_profile(person_id)
 ```
 
 
@@ -795,7 +795,7 @@ response = Client::Profiles.get_profile(person_id)
 #### [Get Profile's Events for a Specific Metric](https://developers.klaviyo.com/en/reference/profile-metric-timeline)
 
 ```ruby
-Client::Profiles.profile_metric_timeline(person_id, metric_id, opts)
+Klaviyo::Profiles.profile_metric_timeline(person_id, metric_id, opts)
 ```
 
 #### Example:
@@ -811,7 +811,7 @@ opts = {
   }
 }
 
-response = Client::Profiles.profile_metric_timeline(person_id, metric_id, opts)
+response = Klaviyo::Profiles.profile_metric_timeline(person_id, metric_id, opts)
 ```
 
 
@@ -820,7 +820,7 @@ response = Client::Profiles.profile_metric_timeline(person_id, metric_id, opts)
 #### [Get Profile's Events for all Metrics](https://developers.klaviyo.com/en/reference/profile-metrics-timeline)
 
 ```ruby
-Client::Profiles.profile_metrics_timeline(person_id, opts)
+Klaviyo::Profiles.profile_metrics_timeline(person_id, opts)
 ```
 
 #### Example:
@@ -835,7 +835,7 @@ opts = {
   }
 }
 
-response = Client::Profiles.profile_metrics_timeline(person_id, opts)
+response = Klaviyo::Profiles.profile_metrics_timeline(person_id, opts)
 ```
 
 
@@ -844,7 +844,7 @@ response = Client::Profiles.profile_metrics_timeline(person_id, opts)
 #### [Update Profile](https://developers.klaviyo.com/en/reference/update-profile)
 
 ```ruby
-Client::Profiles.update_profile(person_id, opts)
+Klaviyo::Profiles.update_profile(person_id, opts)
 ```
 
 #### Example:
@@ -855,7 +855,7 @@ opts = {
   query_params: {'$email': 'george.washington@klaviyo.com'}
 }
 
-response = Client::Profiles.update_profile(person_id, opts)
+response = Klaviyo::Profiles.update_profile(person_id, opts)
 ```
 
 
@@ -868,7 +868,7 @@ response = Client::Profiles.update_profile(person_id, opts)
 #### [Clone Template](https://developers.klaviyo.com/en/reference/clone-template)
 
 ```ruby
-Client::Templates.clone_template(template_id, name)
+Klaviyo::Templates.clone_template(template_id, name)
 ```
 
 #### Example:
@@ -876,7 +876,7 @@ Client::Templates.clone_template(template_id, name)
 template_id = 'TEMPLATE_ID'
 name = 'My Cloned Template'
 
-response = Client::Templates.clone_template(template_id, name)
+response = Klaviyo::Templates.clone_template(template_id, name)
 ```
 
 
@@ -885,7 +885,7 @@ response = Client::Templates.clone_template(template_id, name)
 #### [Create New Template](https://developers.klaviyo.com/en/reference/create-template)
 
 ```ruby
-Client::Templates.create_template(name, html)
+Klaviyo::Templates.create_template(name, html)
 ```
 
 #### Example:
@@ -893,7 +893,7 @@ Client::Templates.create_template(name, html)
 name = 'New Template Name'
 html = '<html><body><p>This is an email for {{ email }}.</p></body></html>'
 
-response = Client::Templates.create_template(name, html)
+response = Klaviyo::Templates.create_template(name, html)
 ```
 
 
@@ -902,14 +902,14 @@ response = Client::Templates.create_template(name, html)
 #### [Delete Template](https://developers.klaviyo.com/en/reference/delete-template)
 
 ```ruby
-Client::Templates.delete_template(template_id)
+Klaviyo::Templates.delete_template(template_id)
 ```
 
 #### Example:
 ```ruby
 template_id = 'TEMPLATE_ID'
 
-response = Client::Templates.delete_template(template_id)
+response = Klaviyo::Templates.delete_template(template_id)
 ```
 
 
@@ -918,12 +918,12 @@ response = Client::Templates.delete_template(template_id)
 #### [Get All Templates](https://developers.klaviyo.com/en/reference/get-templates)
 
 ```ruby
-Client::Templates.get_templates
+Klaviyo::Templates.get_templates
 ```
 
 #### Example:
 ```ruby
-response = Client::Templates.get_templates
+response = Klaviyo::Templates.get_templates
 ```
 
 
@@ -932,7 +932,7 @@ response = Client::Templates.get_templates
 #### [Render Template](https://developers.klaviyo.com/en/reference/render-template)
 
 ```ruby
-Client::Templates.render_template(template_id, opts)
+Klaviyo::Templates.render_template(template_id, opts)
 ```
 
 #### Example:
@@ -946,7 +946,7 @@ opts = {
   }
 }
 
-response = Client::Templates.render_template(template_id, opts)
+response = Klaviyo::Templates.render_template(template_id, opts)
 ```
 
 
@@ -955,7 +955,7 @@ response = Client::Templates.render_template(template_id, opts)
 #### [Render and Send Template](https://developers.klaviyo.com/en/reference/send-template)
 
 ```ruby
-Client::Templates.send_template(template_id, from_email, from_name, subject, to, opts)
+Klaviyo::Templates.send_template(template_id, from_email, from_name, subject, to, opts)
 ```
 
 #### Example:
@@ -973,7 +973,7 @@ opts = {
   }
 }
 
-response = Client::Templates.send_template(template_id, from_email, from_name, subject, to, opts)
+response = Klaviyo::Templates.send_template(template_id, from_email, from_name, subject, to, opts)
 ```
 
 
@@ -982,7 +982,7 @@ response = Client::Templates.send_template(template_id, from_email, from_name, s
 #### [Update Template](https://developers.klaviyo.com/en/reference/update-template)
 
 ```ruby
-Client::Templates.update_template(template_id, opts)
+Klaviyo::Templates.update_template(template_id, opts)
 ```
 
 #### Example:
@@ -995,7 +995,7 @@ opts = {
   }
 }
 
-response = Client::Templates.update_template(template_id, opts)
+response = Klaviyo::Templates.update_template(template_id, opts)
 ```
 
 
@@ -1008,7 +1008,7 @@ response = Client::Templates.update_template(template_id, opts)
 #### [Identify Profile (Legacy)](https://developers.klaviyo.com/en/reference/identify-get)
 
 ```ruby
-Client::TrackIdentify.identify_get(data)
+Klaviyo::TrackIdentify.identify_get(data)
 ```
 
 #### Example:
@@ -1026,7 +1026,7 @@ identify_payload = {
 }
 
 encoded_payload = Base64.encode64(identify_payload.to_json).encode(Encoding::UTF_8)
-response = Client::TrackIdentify.identify_get(encoded_payload)
+response = Klaviyo::TrackIdentify.identify_get(encoded_payload)
 ```
 
 
@@ -1035,7 +1035,7 @@ response = Client::TrackIdentify.identify_get(encoded_payload)
 #### [Identify Profile](https://developers.klaviyo.com/en/reference/identify-post)
 
 ```ruby
-Client::TrackIdentify.identify_post(data)
+Klaviyo::TrackIdentify.identify_post(data)
 ```
 
 #### Example:
@@ -1052,7 +1052,7 @@ identify_payload = {
 }
 
 data = identify_payload.to_json
-response = Client::TrackIdentify.identify_post(data)
+response = Klaviyo::TrackIdentify.identify_post(data)
 ```
 
 
@@ -1061,7 +1061,7 @@ response = Client::TrackIdentify.identify_post(data)
 #### [Track Profile Activity (Legacy)](https://developers.klaviyo.com/en/reference/track-get)
 
 ```ruby
-Client::TrackIdentify.track_get(data)
+Klaviyo::TrackIdentify.track_get(data)
 ```
 
 #### Example:
@@ -1080,7 +1080,7 @@ track_payload = {
 }
 
 encoded_payload = Base64.encode64(track_payload.to_json).encode(Encoding::UTF_8)
-response = Client::TrackIdentify.track_get(encoded_payload)
+response = Klaviyo::TrackIdentify.track_get(encoded_payload)
 ```
 
 
@@ -1089,7 +1089,7 @@ response = Client::TrackIdentify.track_get(encoded_payload)
 #### [Track Profile Activity](https://developers.klaviyo.com/en/reference/track-post)
 
 ```ruby
-Client::TrackIdentify.track_post(data)
+Klaviyo::TrackIdentify.track_post(data)
 ```
 
 #### Example:
@@ -1108,7 +1108,7 @@ track_payload = {
 }
 
 data = track_payload.to_json
-response = Client::TrackIdentify.track_post(data)
+response = Klaviyo::TrackIdentify.track_post(data)
 ```
 
 
