@@ -17,7 +17,7 @@ require 'tempfile'
 require 'time'
 require 'typhoeus'
 
-module Client
+module Klaviyo
   class ApiClient
     # The Configuration object holding settings to be used in the API client.
     attr_accessor :config
@@ -31,7 +31,7 @@ module Client
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "klaviyo-ruby/1.0.1.20220329"
+      @user_agent = "klaviyo-ruby/1.0.2.20220329"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent

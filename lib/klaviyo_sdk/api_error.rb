@@ -10,7 +10,7 @@ OpenAPI Generator version: 5.4.0
 
 =end
 
-module Client
+module Klaviyo
   class ApiError < StandardError
     attr_reader :code, :response_headers, :response_body
 
