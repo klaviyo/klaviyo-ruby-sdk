@@ -103,7 +103,7 @@ module Klaviyo
                       c.tries = max_retries
                       c.max_elapsed_time = max_delay
                       c.on = {
-                        Klaviyo::ApiError => [/400/, /503/, /504/]
+                        Klaviyo::ApiError => [/429/, /503/, /504/]
                       }
                     end
                     Retriable.retriable do
