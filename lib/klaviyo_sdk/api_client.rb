@@ -31,7 +31,7 @@ module Klaviyo
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "klaviyo-ruby/1.0.2.20220329"
+      @user_agent = "klaviyo-ruby/1.0.3.20220329"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent
