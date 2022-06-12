@@ -776,6 +776,27 @@ response = Klaviyo::Profiles.exchange(opts)
 
 
 
+#### [Get Profile ID](https://developers.klaviyo.com/en/reference/get-profile-id)
+
+```ruby
+Klaviyo::Profiles.get_profile_id(query_params: { email: contact_email })
+```
+
+#### Example:
+```ruby
+options = {
+  query_params: {
+    email: 'contact@email.com'
+  }
+}
+
+response = Klaviyo::Profiles.get_profile_id(options)
+```
+
+
+
+
+
 #### [Get Profile](https://developers.klaviyo.com/en/reference/get-profile)
 
 ```ruby

@@ -83,6 +83,81 @@ module Klaviyo
       return data, status_code, headers
     end
 
+    # Get Profile ID
+    #
+    # Retrieves all the data attributes for a person, based on the Klaviyo Person ID.
+    # This method will only allow searching with one search parameter. Precedence of parameters is:
+    # - email
+    # - phone_number
+    # - external_id
+    #
+    # @param [Hash] opts the optional parameters
+    # @return [Hash] object with id key for person profile id
+    def get_profile_id(opts = {})
+      data, _status_code, _headers = get_profile_id_with_http_info(opts)
+      data
+    end
+
+    # Get Profile ID
+    #
+    # Retrieves all the data attributes for a person, based on the Klaviyo Person ID.
+    # This method will only allow searching with one search parameter. Precedence of parameters is:
+    # - email
+    # - phone_number
+    # - external_id
+    #
+    # @param [Hash] opts the optional parameters
+    # @return [Array<(Hash, Integer, Hash)>] Profile id object, response status code and response headers
+    def get_profile_id_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ProfilesApi.get_profile_id ...'
+      end
+
+      search_param = opts[:query_params] && (opts[:query_params][:email] || opts[:query_params][:phone_number] || opts[:query_params][:external_id])
+      if @api_client.config.client_side_validation && !search_param
+        fail ArgumentError, "Missing the required query parameter 'email', 'phone_number', or 'external_id' when calling ProfilesApi.get_profile_id"
+      end
+
+      # resource path
+      local_var_path = '/v2/people/search'
+
+      # query parameters
+      query_params = opts[:query_params]
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Hash<String, Object>'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['ApiKeyAuth']
+
+      new_options = opts.merge(
+        :operation => :"ProfilesApi.get_profile_id",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ProfilesApi#get_profile_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Get Profile
     # Retrieves all the data attributes for a person, based on the Klaviyo Person ID.
     # @param person_id [String] 
