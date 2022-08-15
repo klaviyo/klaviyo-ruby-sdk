@@ -146,6 +146,72 @@ module Klaviyo
       return data, status_code, headers
     end
 
+    # Get Profile ID
+    # Get a profile's Klaviyo ID given exactly one corresponding identifier: `email`, `phone_number`, or `external_id`. NOTE: calling this endpoint with multiple identifiers will result in an error.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :email 
+    # @option opts [String] :phone_number 
+    # @option opts [String] :external_id 
+    # @return [InlineResponse200]
+    def get_profile_id(opts = {})
+      data, _status_code, _headers = get_profile_id_with_http_info(opts)
+      data
+    end
+
+    # Get Profile ID
+    # Get a profile&#39;s Klaviyo ID given exactly one corresponding identifier: &#x60;email&#x60;, &#x60;phone_number&#x60;, or &#x60;external_id&#x60;. NOTE: calling this endpoint with multiple identifiers will result in an error.
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :email 
+    # @option opts [String] :phone_number 
+    # @option opts [String] :external_id 
+    # @return [Array<(InlineResponse200, Integer, Hash)>] InlineResponse200 data, response status code and response headers
+    def get_profile_id_with_http_info(opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: ProfilesApi.get_profile_id ...'
+      end
+      # resource path
+      local_var_path = '/v2/people/search'
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'email'] = opts[:'email'] if !opts[:'email'].nil?
+      query_params[:'phone_number'] = opts[:'phone_number'] if !opts[:'phone_number'].nil?
+      query_params[:'external_id'] = opts[:'external_id'] if !opts[:'external_id'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'InlineResponse200'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['ApiKeyAuth']
+
+      new_options = opts.merge(
+        :operation => :"ProfilesApi.get_profile_id",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: ProfilesApi#get_profile_id\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
     # Get Profile's Events for a Specific Metric
     # Returns a person's batched timeline for one specific event type.
     # @param person_id [String] 

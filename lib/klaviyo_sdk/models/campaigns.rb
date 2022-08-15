@@ -14,7 +14,7 @@ require 'date'
 require 'time'
 
 module Klaviyo
-  class Campaign
+  class Campaigns
     attr_accessor :object
 
     attr_accessor :id
@@ -53,7 +53,7 @@ module Klaviyo
 
     attr_accessor :message_type
 
-    attr_accessor :template
+    attr_accessor :template_id
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -99,7 +99,7 @@ module Klaviyo
         :'campaign_type' => :'campaign_type',
         :'is_segmented' => :'is_segmented',
         :'message_type' => :'message_type',
-        :'template' => :'template'
+        :'template_id' => :'template_id'
       }
     end
 
@@ -130,14 +130,13 @@ module Klaviyo
         :'campaign_type' => :'String',
         :'is_segmented' => :'Boolean',
         :'message_type' => :'String',
-        :'template' => :'Hash<String, Object>'
+        :'template_id' => :'String'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
-        :'sent_at',
       ])
     end
 
@@ -145,13 +144,13 @@ module Klaviyo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Klaviyo::Campaign` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Klaviyo::Campaigns` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Klaviyo::Campaign`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Klaviyo::Campaigns`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -236,10 +235,8 @@ module Klaviyo
         self.message_type = attributes[:'message_type']
       end
 
-      if attributes.key?(:'template')
-        if (value = attributes[:'template']).is_a?(Hash)
-          self.template = value
-        end
+      if attributes.key?(:'template_id')
+        self.template_id = attributes[:'template_id']
       end
     end
 
@@ -352,7 +349,7 @@ module Klaviyo
           campaign_type == o.campaign_type &&
           is_segmented == o.is_segmented &&
           message_type == o.message_type &&
-          template == o.template
+          template_id == o.template_id
     end
 
     # @see the `==` method
@@ -364,7 +361,7 @@ module Klaviyo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [object, id, name, subject, from_email, from_name, lists, excluded_lists, status, status_id, status_label, sent_at, send_time, created, updated, num_recipients, campaign_type, is_segmented, message_type, template].hash
+      [object, id, name, subject, from_email, from_name, lists, excluded_lists, status, status_id, status_label, sent_at, send_time, created, updated, num_recipients, campaign_type, is_segmented, message_type, template_id].hash
     end
 
     # Builds the object from hash
