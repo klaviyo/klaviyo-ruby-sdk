@@ -1,5 +1,8 @@
 ## CHANGELOG
 
+### 1.0.4.20220816
+* Add support for /v2/people/search endpoint
+
 ### 1.0.3.20220329
 * Fix one of the error codes that the retry logic relies on (from 400 to 429)
 
