@@ -792,6 +792,28 @@ response = Klaviyo::Profiles.get_profile(person_id)
 
 
 
+#### [Get Profile ID](https://developers.klaviyo.com/en/reference/get-profile-id)
+
+```ruby
+Klaviyo::Profiles.get_profile_id(opts)
+```
+
+#### Example:
+```ruby
+opts = {
+  query_params: {
+    email: 'george.washington@klaviyo.com',
+    phone_number: '555-555-5555',
+    external_id: 'EXTERNAL_ID'
+  }
+}
+
+response = Klaviyo::Profiles.get_profile_id(opts)
+```
+
+
+
+
 #### [Get Profile's Events for a Specific Metric](https://developers.klaviyo.com/en/reference/profile-metric-timeline)
 
 ```ruby
