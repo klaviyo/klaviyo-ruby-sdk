@@ -1,6 +1,6 @@
 ## CHANGELOG
 
-### 1.0.4.20220816
+### 1.0.4.20220329
 * Add support for /v2/people/search endpoint
 * Update campaign and campaign_lists models
 
