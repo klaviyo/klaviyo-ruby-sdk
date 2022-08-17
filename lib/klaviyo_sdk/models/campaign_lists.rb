@@ -14,19 +14,56 @@ require 'date'
 require 'time'
 
 module Klaviyo
-  class InlineObject5
-    attr_accessor :emails
+  class CampaignLists
+    attr_accessor :object
 
-    attr_accessor :phone_numbers
+    attr_accessor :id
 
-    attr_accessor :push_tokens
+    attr_accessor :name
+
+    attr_accessor :list_type
+
+    attr_accessor :folder
+
+    attr_accessor :created
+
+    attr_accessor :updated
+
+    attr_accessor :person_count
+
+    class EnumAttributeValidator
+      attr_reader :datatype
+      attr_reader :allowable_values
+
+      def initialize(datatype, allowable_values)
+        @allowable_values = allowable_values.map do |value|
+          case datatype.to_s
+          when /Integer/i
+            value.to_i
+          when /Float/i
+            value.to_f
+          else
+            value
+          end
+        end
+      end
+
+      def valid?(value)
+        !value || allowable_values.include?(value)
+      end
+    end
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'emails' => :'emails',
-        :'phone_numbers' => :'phone_numbers',
-        :'push_tokens' => :'push_tokens'
+        :'object' => :'object',
+        :'id' => :'id',
+        :'name' => :'name',
+        :'list_type' => :'list_type',
+        :'folder' => :'folder',
+        :'created' => :'created',
+        :'updated' => :'updated',
+        :'person_count' => :'person_count'
       }
     end
 
@@ -38,15 +75,21 @@ module Klaviyo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'emails' => :'Array<String>',
-        :'phone_numbers' => :'Array<String>',
-        :'push_tokens' => :'Array<String>'
+        :'object' => :'String',
+        :'id' => :'String',
+        :'name' => :'String',
+        :'list_type' => :'String',
+        :'folder' => :'String',
+        :'created' => :'Time',
+        :'updated' => :'Time',
+        :'person_count' => :'Integer'
       }
     end
 
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'folder',
       ])
     end
 
@@ -54,33 +97,49 @@ module Klaviyo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Klaviyo::InlineObject5` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Klaviyo::CampaignLists` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Klaviyo::InlineObject5`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Klaviyo::CampaignLists`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'emails')
-        if (value = attributes[:'emails']).is_a?(Array)
-          self.emails = value
-        end
+      if attributes.key?(:'object')
+        self.object = attributes[:'object']
+      else
+        self.object = 'list'
       end
 
-      if attributes.key?(:'phone_numbers')
-        if (value = attributes[:'phone_numbers']).is_a?(Array)
-          self.phone_numbers = value
-        end
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
 
-      if attributes.key?(:'push_tokens')
-        if (value = attributes[:'push_tokens']).is_a?(Array)
-          self.push_tokens = value
-        end
+      if attributes.key?(:'name')
+        self.name = attributes[:'name']
+      end
+
+      if attributes.key?(:'list_type')
+        self.list_type = attributes[:'list_type']
+      end
+
+      if attributes.key?(:'folder')
+        self.folder = attributes[:'folder']
+      end
+
+      if attributes.key?(:'created')
+        self.created = attributes[:'created']
+      end
+
+      if attributes.key?(:'updated')
+        self.updated = attributes[:'updated']
+      end
+
+      if attributes.key?(:'person_count')
+        self.person_count = attributes[:'person_count']
       end
     end
 
@@ -88,58 +147,25 @@ module Klaviyo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@emails.nil? && @emails.length < 0
-        invalid_properties.push('invalid value for "emails", number of items must be greater than or equal to 0.')
-      end
-
-      if !@phone_numbers.nil? && @phone_numbers.length < 0
-        invalid_properties.push('invalid value for "phone_numbers", number of items must be greater than or equal to 0.')
-      end
-
-      if !@push_tokens.nil? && @push_tokens.length < 0
-        invalid_properties.push('invalid value for "push_tokens", number of items must be greater than or equal to 0.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@emails.nil? && @emails.length < 0
-      return false if !@phone_numbers.nil? && @phone_numbers.length < 0
-      return false if !@push_tokens.nil? && @push_tokens.length < 0
+      list_type_validator = EnumAttributeValidator.new('String', ["list", "segment"])
+      return false unless list_type_validator.valid?(@list_type)
       true
     end
 
-    # Custom attribute writer method with validation
-    # @param [Object] emails Value to be assigned
-    def emails=(emails)
-      if !emails.nil? && emails.length < 0
-        fail ArgumentError, 'invalid value for "emails", number of items must be greater than or equal to 0.'
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] list_type Object to be assigned
+    def list_type=(list_type)
+      validator = EnumAttributeValidator.new('String', ["list", "segment"])
+      unless validator.valid?(list_type)
+        fail ArgumentError, "invalid value for \"list_type\", must be one of #{validator.allowable_values}."
       end
-
-      @emails = emails
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] phone_numbers Value to be assigned
-    def phone_numbers=(phone_numbers)
-      if !phone_numbers.nil? && phone_numbers.length < 0
-        fail ArgumentError, 'invalid value for "phone_numbers", number of items must be greater than or equal to 0.'
-      end
-
-      @phone_numbers = phone_numbers
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] push_tokens Value to be assigned
-    def push_tokens=(push_tokens)
-      if !push_tokens.nil? && push_tokens.length < 0
-        fail ArgumentError, 'invalid value for "push_tokens", number of items must be greater than or equal to 0.'
-      end
-
-      @push_tokens = push_tokens
+      @list_type = list_type
     end
 
     # Checks equality by comparing each attribute.
@@ -147,9 +173,14 @@ module Klaviyo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          emails == o.emails &&
-          phone_numbers == o.phone_numbers &&
-          push_tokens == o.push_tokens
+          object == o.object &&
+          id == o.id &&
+          name == o.name &&
+          list_type == o.list_type &&
+          folder == o.folder &&
+          created == o.created &&
+          updated == o.updated &&
+          person_count == o.person_count
     end
 
     # @see the `==` method
@@ -161,7 +192,7 @@ module Klaviyo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [emails, phone_numbers, push_tokens].hash
+      [object, id, name, list_type, folder, created, updated, person_count].hash
     end
 
     # Builds the object from hash

@@ -14,19 +14,13 @@ require 'date'
 require 'time'
 
 module Klaviyo
-  class InlineObject5
-    attr_accessor :emails
-
-    attr_accessor :phone_numbers
-
-    attr_accessor :push_tokens
+  class InlineResponse200
+    attr_accessor :id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'emails' => :'emails',
-        :'phone_numbers' => :'phone_numbers',
-        :'push_tokens' => :'push_tokens'
+        :'id' => :'id'
       }
     end
 
@@ -38,9 +32,7 @@ module Klaviyo
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'emails' => :'Array<String>',
-        :'phone_numbers' => :'Array<String>',
-        :'push_tokens' => :'Array<String>'
+        :'id' => :'String'
       }
     end
 
@@ -54,33 +46,19 @@ module Klaviyo
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Klaviyo::InlineObject5` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Klaviyo::InlineResponse200` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Klaviyo::InlineObject5`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Klaviyo::InlineResponse200`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'emails')
-        if (value = attributes[:'emails']).is_a?(Array)
-          self.emails = value
-        end
-      end
-
-      if attributes.key?(:'phone_numbers')
-        if (value = attributes[:'phone_numbers']).is_a?(Array)
-          self.phone_numbers = value
-        end
-      end
-
-      if attributes.key?(:'push_tokens')
-        if (value = attributes[:'push_tokens']).is_a?(Array)
-          self.push_tokens = value
-        end
+      if attributes.key?(:'id')
+        self.id = attributes[:'id']
       end
     end
 
@@ -88,58 +66,13 @@ module Klaviyo
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if !@emails.nil? && @emails.length < 0
-        invalid_properties.push('invalid value for "emails", number of items must be greater than or equal to 0.')
-      end
-
-      if !@phone_numbers.nil? && @phone_numbers.length < 0
-        invalid_properties.push('invalid value for "phone_numbers", number of items must be greater than or equal to 0.')
-      end
-
-      if !@push_tokens.nil? && @push_tokens.length < 0
-        invalid_properties.push('invalid value for "push_tokens", number of items must be greater than or equal to 0.')
-      end
-
       invalid_properties
     end
 
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if !@emails.nil? && @emails.length < 0
-      return false if !@phone_numbers.nil? && @phone_numbers.length < 0
-      return false if !@push_tokens.nil? && @push_tokens.length < 0
       true
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] emails Value to be assigned
-    def emails=(emails)
-      if !emails.nil? && emails.length < 0
-        fail ArgumentError, 'invalid value for "emails", number of items must be greater than or equal to 0.'
-      end
-
-      @emails = emails
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] phone_numbers Value to be assigned
-    def phone_numbers=(phone_numbers)
-      if !phone_numbers.nil? && phone_numbers.length < 0
-        fail ArgumentError, 'invalid value for "phone_numbers", number of items must be greater than or equal to 0.'
-      end
-
-      @phone_numbers = phone_numbers
-    end
-
-    # Custom attribute writer method with validation
-    # @param [Object] push_tokens Value to be assigned
-    def push_tokens=(push_tokens)
-      if !push_tokens.nil? && push_tokens.length < 0
-        fail ArgumentError, 'invalid value for "push_tokens", number of items must be greater than or equal to 0.'
-      end
-
-      @push_tokens = push_tokens
     end
 
     # Checks equality by comparing each attribute.
@@ -147,9 +80,7 @@ module Klaviyo
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          emails == o.emails &&
-          phone_numbers == o.phone_numbers &&
-          push_tokens == o.push_tokens
+          id == o.id
     end
 
     # @see the `==` method
@@ -161,7 +92,7 @@ module Klaviyo
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [emails, phone_numbers, push_tokens].hash
+      [id].hash
     end
 
     # Builds the object from hash

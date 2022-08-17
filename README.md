@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 1.0.3.20220329
+- SDK version: 1.0.4.20220329
 
 ## Helpful Resources
 
@@ -60,13 +60,13 @@ gem build klaviyo_sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo_sdk-1.0.3.20220329.gem
+gem install ./klaviyo_sdk-1.0.4.20220329.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo_sdk', '~> 1.0.3.20220329'
+    gem 'klaviyo_sdk', '~> 1.0.4.20220329'
 
 To install directly from rubygems:
 
@@ -787,6 +787,28 @@ Klaviyo::Profiles.get_profile(person_id)
 person_id = 'PERSON_ID'
 
 response = Klaviyo::Profiles.get_profile(person_id)
+```
+
+
+
+
+#### [Get Profile ID](https://developers.klaviyo.com/en/reference/get-profile-id)
+
+```ruby
+Klaviyo::Profiles.get_profile_id(opts)
+```
+
+#### Example:
+```ruby
+opts = {
+  query_params: {
+    email: 'george.washington@klaviyo.com',
+    phone_number: '555-555-5555',
+    external_id: 'EXTERNAL_ID'
+  }
+}
+
+response = Klaviyo::Profiles.get_profile_id(opts)
 ```
 
 

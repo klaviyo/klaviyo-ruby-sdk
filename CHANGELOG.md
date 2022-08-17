@@ -1,5 +1,9 @@
 ## CHANGELOG
 
+### 1.0.4.20220329
+* Add support for /v2/people/search endpoint
+* Update campaign and campaign_lists models
+
 ### 1.0.3.20220329
 * Fix one of the error codes that the retry logic relies on (from 400 to 429)
 
