@@ -1,6 +1,6 @@
 # Klaviyo Ruby SDK
 
-- SDK version: 1.0.4.20220329
+- SDK version: 1.0.5.20220329
 
 ## Helpful Resources
 
@@ -60,13 +60,13 @@ gem build klaviyo_sdk.gemspec
 Then install the gem locally:
 
 ```shell
-gem install ./klaviyo_sdk-1.0.4.20220329.gem
+gem install ./klaviyo_sdk-1.0.5.20220329.gem
 ```
 
 
 Finally add this to the Gemfile:
 
-    gem 'klaviyo_sdk', '~> 1.0.4.20220329'
+    gem 'klaviyo_sdk', '~> 1.0.5.20220329'
 
 To install directly from rubygems:
 
