@@ -1,3 +1,13 @@
+# NEW API + SDK
+
+NOTE: we have a NEW ruby SDK to go along with our [new API](https://developers.klaviyo.com/en/reference/api_overview).
+
+We recommend migrating over to our [newest SDK](https://github.com/klaviyo/klaviyo-api-ruby).
+
+You can read more about our SDK release history and support [here](https://developers.klaviyo.com/en/docs/sdk_overview)
+
+For a comparison between our old and new APIs, check out [this guide](https://developers.klaviyo.com/en/docs/apis_comparison_chart).
+
 # Klaviyo Ruby SDK
 
 - SDK version: 1.0.5.20220329
