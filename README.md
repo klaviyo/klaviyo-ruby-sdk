@@ -1,4 +1,6 @@
-# NEW API + SDK
+# Klaviyo Ruby SDK (Legacy)
+
+## Legacy Notice
 
 NOTE: we have a NEW ruby SDK to go along with our [new API](https://developers.klaviyo.com/en/reference/api_overview).
 
