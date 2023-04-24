@@ -2,13 +2,13 @@
 
 ## Legacy Notice
 
-NOTE: we have a NEW ruby SDK to go along with our [new API](https://developers.klaviyo.com/en/reference/api_overview).
+This SDK is set to be deprecated + retired on 2024-01-01.
+
+We have a NEW ruby SDK to go along with our [new API](https://developers.klaviyo.com/en/reference/api_overview).
 
 We recommend migrating over to our [newest SDK](https://github.com/klaviyo/klaviyo-api-ruby).
 
 You can read more about our SDK release history and support [here](https://developers.klaviyo.com/en/docs/sdk_overview)
-
-For a comparison between our old and new APIs, check out [this guide](https://developers.klaviyo.com/en/docs/apis_comparison_chart).
 
 # Klaviyo Ruby SDK
 
